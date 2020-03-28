@@ -83,7 +83,7 @@ for (i=1; i<5; i++){
 }
 var k = 0;
 function myf(val,idd){
-//play();
+play();
 k++;
  if(k<len){
  if(document.getElementById("myCheck").checked == true){document.getElementById('quAndAns').style.display='none';}else{document.getElementById('quAndAns').style.display='block';}
@@ -117,9 +117,9 @@ k++;
  document.getElementById('ansAllQues').innerHTML +="<br><p>"+ Object.keys(quest)[len-1] + "<br>الاجابة: <span>"+ Object.values(quest)[len-1][0] + "</span></p>";
  document.getElementById('ansAllQues').style.display='block';}, 100);
  };
- //function play() { var audio = document.getElementById("audio"); audio.play();}
+ function play() { var audio = document.getElementById("audio"); audio.play();}
 </script>
-<audio id="audio" src="mms.mp3"></audio>
+<audio id="audio" src="clk.mp3"></audio>
 
 
 </body>
