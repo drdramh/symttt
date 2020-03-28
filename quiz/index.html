@@ -1,4 +1,396 @@
-<html>
-SSSSSSSSSSs
+<html dir="rtl">
 
+<head>
+  <meta charset='UTF-8'/>
+  <title>اختبارات توعية وتقييم</title>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <meta property="og:title" content="اختبارات توعية وتقييم">
+  <meta property="og:description" content="اختبارات قياس درجة الوعي | اختبارات ذكاء وقدرات عقلية">
+  <meta property="og:image" content="https://f0.pngfuel.com/png/197/939/red-question-mark-png-clip-art.png">
+  <meta property="og:url" content="">
+  
+  <link href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet'/>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'/> 
+  <link href='https://i.imgur.com/SmWmB0u.png' rel='icon' type='image/x-icon'/>
+  
+</head>
+<body>
+
+  
+   <div class="header">
+    <a href="https://symttt.com/quiz/"><img alt="Logo Test Quiz" src="https://i.imgur.com/hrwkzuS.png" style="width: 45px;margin-top: 20px;">اختبار توعية كورونا</a>
+  </div>
+
+<div id="container">
+<h3>درجاتك حتى الآن:  <span id="dv">0</span></h3>
+ 
+<p id="ques"></p>
+<img id="img" src="https://i.imgur.com/hrwkzuS.png">
+
+
+
+<div id="btns">
+<input type="button" value="" class="bttn" id="btn1" onclick="myf(this.value,this.id)">
+
+<input type="button" value="" class="bttn" id="btn2" onclick="myf(this.value,this.id)">
+<br>
+<input type="button" value="" class="bttn" id="btn3" onclick="myf(this.value,this.id)">
+
+<input type="button" value="" class="bttn" id="btn4" onclick="myf(this.value,this.id)">
+</div>
+<div id="showanswer">
+<input type="checkbox" id="myCheck" value="show"><label> عدم عرض الإجابة الصحيحة بعد كل سؤال</label>
+ </div>
+ <br><br>
+ 
+<div id="fno">الســـؤال <span id="qNumber"></span> مـــــن <span id="allQuestions"></span> </div>
+
+<br><br>
+<div id="quAndAns"></div>
+</div>
+<div id="ansAllQues">إجابات جميع الأسئلة<br></div>
+
+ <br>
+ <div style="margin-bottom:50px;">
+ <button class="bttn" id="reload" onClick="window.location.reload()">إعادة الإختبار</button>
+ </div>
+ <br>
+ 
+ 
+ 
+
+
+
+
+<script type="text/javascript">
+var quest = {
+"حاصل ضرب اتنين في اتنين":["4","4","8","20","اسود","https://i.imgur.com/JKW95yT.jpg"],
+"ما هو لون الشمس؟":["احمر","احمر","اخضر","اصفر جميل اللون فاتح","اسود","https://previews.123rf.com/images/jonnysek/jonnysek1706/jonnysek170600537/80993161-very-nice-clouds-background-with-the-blue-sky.jpg"],
+"كم عدد الكواكب؟":["5","5","7","8","9","https://i.imgur.com/TvbKUym.jpg"],
+"كم عدد الاختبارات":["5","7","5","","",""],
+"ما هو اسمك":["احمد","محمد","احمد","عصام","علي",""],
+"ما هي عاصمة جمهورية مصر العربية؟":["القاهرة","الفيوم","القاهرة","اسيوط","المنوفية",""],
+"من هو رئيس الولايات المتحدة الأمريكية الحالي؟":["ترامب","كلينتون","ترامب","نيلسون","أوباما",""],
+};
+var score = 0;
+var len = Object.keys(quest).length;
+document.getElementById('allQuestions').innerHTML = len;
+document.getElementById('qNumber').innerHTML = 1; 
+for (i=1; i<5; i++){
+  document.getElementById('ques').innerHTML = Object.keys(quest)[0];
+  document.getElementById('img').src = Object.values(quest)[0][5];
+  document.getElementsByClassName('bttn')[i-1].value = Object.values(quest)[0][i]; 
+}
+var k = 0;
+function myf(val,idd){
+//play();
+k++;
+ if(k<len){
+ if(document.getElementById("myCheck").checked == true){document.getElementById('quAndAns').style.display='none';}else{document.getElementById('quAndAns').style.display='block';}
+  document.getElementById('quAndAns').innerHTML ="إجابة السؤال السابق<br><p id='lastQuAns'>"+ Object.keys(quest)[k-1]+"<br>الاجابة: <span>"+ Object.values(quest)[k-1][0]+"</span></p>";
+  document.getElementById('ansAllQues').innerHTML +="<br><p>"+ Object.keys(quest)[k-1] + "<br>الاجابة: <span>"+ Object.values(quest)[k-1][0] + "</span></p>";
+  for (i=1; i<5; i++){
+  document.getElementById('ques').innerHTML = Object.keys(quest)[k];                  // fill the question
+  if(Object.values(quest)[k][5] !== ""){document.getElementById('img').src = Object.values(quest)[k][5]}else{
+  document.getElementById('img').src ="https://i.imgur.com/hrwkzuS.png"};            // fill images
+  document.getElementsByClassName('bttn')[i-1].value = Object.values(quest)[k][i];   //fill the choices
+   if(Object.values(quest)[k][i] == ""){document.getElementsByClassName('bttn')[i-1].style.visibility = "hidden"}else{
+   document.getElementsByClassName('bttn')[i-1].style.visibility = "visible"};
+ 
+  
+   }
+   
+   };
+ if(val == Object.values(quest)[k-1][0]){
+ score = score + 1;
+ document.getElementById(idd).classList.add("grColor");
+ setTimeout(function(){document.getElementById(idd).classList.remove("grColor"); }, 100);
+ }else{
+ document.getElementById(idd).classList.add("redColor");
+ setTimeout(function(){document.getElementById(idd).classList.remove("redColor"); }, 100);}
+ 
+ document.getElementById('qNumber').innerHTML = k+1;
+  document.getElementById('dv').innerHTML = score;
+ 
+ if (k==len)setTimeout(function(){
+ document.getElementById('container').innerHTML ="درجاتك هي: <br><p id='score'>" + (score/len).toFixed(2)*100 + " %</p>";
+ document.getElementById('ansAllQues').innerHTML +="<br><p>"+ Object.keys(quest)[len-1] + "<br>الاجابة: <span>"+ Object.values(quest)[len-1][0] + "</span></p>";
+ document.getElementById('ansAllQues').style.display='block';}, 100);
+ };
+ //function play() { var audio = document.getElementById("audio"); audio.play();}
+</script>
+<audio id="audio" src="mms.mp3"></audio>
+
+
+</body>
+
+
+<footer class="footer">
+
+      <a href='https://symttt.com/privacy.html'>الخصوصية</a>
+	  
+        <a href='https://symttt.com/contact.html'>اتصل بنا</a>
+		
+		<br>
+جميع الحقوق محفوظة &#169;
+<a href="https://symttt.com">موقع فحص كورونا</a>
+</footer>
+
+
+<style type="text/css">
+	
+	 *{
+  margin: 0;
+  padding: 0;
+  font-family: Tajawal;
+  box-sizing: border-box;
+  
+}
+
+#ques {
+  width: 60%;
+  color: white;
+  display: flex;
+  height: 90px;
+  line-height: 35px;
+  margin: 20px auto;
+  border-radius: 3px;
+  padding: 15px 7px;
+  align-items: center;
+  justify-content: center;
+  background: #0B0B61;
+  box-shadow: 0px 18px 10px #d6d6d6
+}
+
+
+
+.bttn{
+  outline: 0;
+  color: white;
+  border: 0px;
+  margin: 10px;
+  width: 30%;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #045FB4;
+  font-family: Tajawal;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.12);
+	}
+
+#img{
+   width:280px;
+   height:225px;
+   margin:9px;
+   border-radius: 5px;
+   border: 1px;
+   box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.12);
+   }
+
+.grColor{background:#088A08;}
+
+.redColor{background:#DF0101;}
+
+#ansAllQues{display:none;}
+
+#ansAllQues p{
+       color:red;
+       border:1px solid black;
+       width:60%;
+       margin:auto;
+       font-weight: bold;
+       background:#D8F781;
+    }
+
+#ansAllQues span{
+       color:blue;
+	   }
+
+#score{
+      font-size:70px;
+	  color:red;
+	  }
+
+
+
+#showanswer{
+       float:right;
+	   margin-right:20px;
+	   
+	   font-size:15px;
+	   }
+
+#fno{
+    
+    margin:auto;
+	border:1px solid red;
+	font-weight:bold;
+	width:300px;
+	border-radius: 5px;
+	}
+	
+#reload{
+	width:130px;
+	}
+	
+	
+#lastQuAns{
+     margin:auto;
+     width:50%;
+	 border: 0px;
+	 font-weight:bold;
+	 color:red;
+	 background:#A4A4A4;
+	 border-radius:5px;
+	   }
+	   
+#lastQuAns span{
+       color:blue;
+	   }
+	   
+
+
+body {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  background: url('https://i.imgur.com/plZB0TD.png');
+  background-size: cover;
+  word-break: break-word;
+  font-family: 'Karla', sans-serif;
+}
+
+.header {
+  font-size:25px;
+  line-height:70px;
+  padding: 0px 20px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a {
+  color:  #1AA0C5;
+  text-decoration: none;
+}
+
+
+
+h3,h3 {font-size: 20px}
+p {font-size: 18px;}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center
+}
+.clear{
+  clear: both
+}
+
+.privacy-policy {
+  width: 60%;
+  padding: 20px;
+  margin: 20px auto;
+  background: #f3f3f3;
+  border: 2px solid #f7f7f7;
+}
+.privacy-policy h2, .privacy-policy h1 {
+  margin: 16px 0px;
+}
+.articles {
+  margin-top: 250px;
+  width: 70%;
+  margin: 70px auto;
+}
+.articles .article-row {
+  background: white;
+  border-radius: 1px;
+  padding: 20px 12px;
+  margin: 20px 0px;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.06);
+}
+.article-page img {
+  width: 100%
+}
+
+.article-page {
+  width: 60%;
+  margin: 0px auto 130px auto
+}
+.footer {
+  position: absolute;
+  font-size: 13px;
+  bottom: 10px;
+  width: 100%;
+  color: #666;
+  padding: 0px 11px;
+}
+
+
+#hidden {display: none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 900px) {
+  #ques {
+    width: 97%;
+  }
+  .bttn{
+  width: 40%;
+  }
+  
+  #img{
+   width:240px;
+   height:225px;
+   }
+  
+  
+  
+  
+  
+  
+  .privacy-policy {
+    width: 100%
+  }
+  
+ 
+  .articles {
+    width: 97%;
+    margin-top: 120px;
+    margin: 70px auto;
+  }
+  .article-page {
+    width: 95%
+  }
+
+}
+	
+	
+	 
+</style>
 </html>
