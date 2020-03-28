@@ -104,10 +104,10 @@ k++;
  if(val == Object.values(quest)[k-1][0]){
  score = score + 1;
  document.getElementById(idd).classList.add("grColor");
- setTimeout(function(){document.getElementById(idd).classList.remove("grColor"); }, 100);
+ setTimeout(function(){document.getElementById(idd).classList.remove("grColor"); }, 300);
  }else{
  document.getElementById(idd).classList.add("redColor");
- setTimeout(function(){document.getElementById(idd).classList.remove("redColor"); }, 100);}
+ setTimeout(function(){document.getElementById(idd).classList.remove("redColor"); }, 300);}
  
  document.getElementById('qNumber').innerHTML = k+1;
   document.getElementById('dv').innerHTML = score;
